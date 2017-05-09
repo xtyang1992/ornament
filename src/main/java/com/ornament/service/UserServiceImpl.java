@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService{
      * @param account
      * @return
      */
-    public Integer selectUserByAccount(Integer account) {
+    public User selectUserByAccount(Integer account) {
         return userDao.selectUserByAccount(account);
     }
 

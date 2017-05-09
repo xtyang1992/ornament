@@ -12,5 +12,5 @@ public interface UserDao {
      * @param account
      * @return
      */
-    public Integer selectUserByAccount(Integer account);
+    public User selectUserByAccount(Integer account);
 }
