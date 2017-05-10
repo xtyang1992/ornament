@@ -8,5 +8,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface UserService {
-    Integer selectUserByAccount(Integer account);
+    User selectUserByAccount(Integer account);
 }
