@@ -13,4 +13,11 @@ public interface UserDao {
      * @return
      */
     public User selectUserByAccount(Integer account);
+
+    /**
+     *
+     * @param userId
+     * @return
+     */
+    public User selectUserById(String userId);
 }

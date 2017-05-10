@@ -20,7 +20,7 @@ public class UserServiceTest extends SpringTestCase {
 
     @Test
     public void selectUserByAccountTest(){
-        User user = userService.selectUserByAccount(1);
+        User user = userService.getUserByAccount(1);
         logger.debug("查找结果" + user);
     }
 

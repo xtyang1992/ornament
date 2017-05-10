@@ -16,12 +16,21 @@ public class UserServiceImpl implements UserService{
     private UserDao userDao;
 
     /**
-     *
+     * 根据账号查找用户
      * @param account
      * @return
      */
-    public User selectUserByAccount(Integer account) {
+    public User getUserByAccount(Integer account) {
         return userDao.selectUserByAccount(account);
+    }
+
+    /**
+     * 根据工号查找用户
+     * @param userId
+     * @return
+     */
+    public User getUserById(String userId) {
+        return userDao.selectUserById(userId);
     }
 
 }

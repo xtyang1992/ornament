@@ -7,4 +7,8 @@
     <select id="selectUserByAccount" parameterType="int" resultType="com.ornament.domain.User">
         SELECT * FROM user WHERE account = #{account}
     </select>
+
+    <select id="selectUserById" parameterType="String" resultType="com.ornament.domain.User">
+        SELECT * FROM user WHERE userId = #{userId}
+    </select>
 </mapper>
