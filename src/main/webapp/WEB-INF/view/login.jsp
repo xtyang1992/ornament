@@ -80,7 +80,7 @@
                                 $("#password").val("");
                                 alert("用户不存在，请重新登录")
 							} else {
-                                location.href='index.jsp';
+                                location.href='index.html';
                             }
                         }
                     });

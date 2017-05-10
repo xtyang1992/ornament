@@ -28,7 +28,7 @@ public class UserController {
 
     @RequestMapping(value = "/test", method = GET)
     public ModelAndView getIndex(){
-        ModelAndView mav = new ModelAndView("index");
+        ModelAndView mav = new ModelAndView("/WEB-INF/view/index.html");
         User user = userService.getUserByAccount(1);
         mav.addObject("user", user);
         return mav;
