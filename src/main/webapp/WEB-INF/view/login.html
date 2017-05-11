@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 
 	<head>
@@ -55,7 +54,20 @@
 		<script type="text/javascript" src="plugins/layui/layui.js"></script>
 		<script>
             $(document).ready(function(){
-                console.log("aaaaa");
+                function SetCookie(cookieName,cookieValue,nDays) {
+					/*当前日期*/
+                    var today = new Date();
+					/*Cookie过期时间*/
+                    var expire = new Date();
+					/*如果未设置nDays参数或者nDays为0，取默认值1*/
+                    if(nDays == null || nDays == 0) nDays = 1;
+					/*计算Cookie过期时间*/
+                    expire.setTime(today.getTime() + 3600000 * 24 * nDays);
+					/*设置Cookie值*/
+                    document.cookie = cookieName + "=" + escape(cookieValue)
+                        + ";expires=" + expire.toGMTString();
+                }
+
                 //传递字符串格式json对象到后台（一个json对象）
                 $("#loginButton").click(function(){
                     console.log("aaaaa");
@@ -80,6 +92,8 @@
                                 $("#password").val("");
                                 alert("用户不存在，请重新登录")
 							} else {
+                                SetCookie("username",result.data.userName,1);
+                                SetCookie("userId",result.data.userId,1);
                                 location.href='index.html';
                             }
                         }

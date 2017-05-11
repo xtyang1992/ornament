@@ -1,0 +1,102 @@
+CREATE TABLE department(
+	departmentId INT(11) NOT NULL AUTO_INCREMENT,
+	departmentName VARCHAR NOT NULL,
+	departmentUserNumber INT NOT NULL,
+	departmentProjectNumber INT NOT NULL,
+	PRIMARY KEY departmentId
+);
+CREATE TABLE village(
+	villageId INT(11) NOT NULL AUTO_INCREMENT,
+	villageName VARCHAR NOT NULL,
+	villageAddress VARCHAR NOT NULL,
+	villageTel VARCHAR NOT NULL,
+	PRIMARY KEY villageId
+);
+CREATE TABLE material(
+	materialId INT(11) NOT NULL AUTO_INCREMENT,
+	materialName VARCHAR NOT NULL,
+	materialType VARCHAR NOT NULL,
+	materialUse VARCHAR,
+	materialPrice FLOAT,
+	materialSentValue FLOAT,
+	PRIMARY KEY materialId
+);
+
+CREATE TABLE customer(
+	customerId INT(11) NOT NULL AUTO_INCREMENT,
+	customerName VARCHAR NOT NULL,
+	customerSex TINYINT NOT NULL,
+	customerTel VARCHAR,
+	PRIMARY KEY customerId
+);
+
+CREATE TABLE project(
+	projectId INT(11) NOT NULL AUTO_INCREMENT,
+	projectAddress VARCHAR NOT NULL COMMENT "地址",
+	projectArea FLOAT COMMENT "项目工程面积，单位：平方米",
+	projectType VARCHAR COMMENT "户型信息",
+	projectSubscription FLOAT COMMENT "项目订金",
+	projectPrice FLOAT COMMENT "合同造价",
+	projectChangeValueTotal FLOAT COMMENT "增减金额合计：+=projectChangeValue（注意与下方金额关联运算）",
+    projectMaterialValueTotal FLOAT COMMENT "多个process下材料总金额",
+    projectBuildValueTotal FLOAT COMMENT "多个process下施工总金额",
+    projectAllocateValueTotal FLOAT COMMENT "多个process下调拨总金额",
+    projectCollectionValueTotal FLOAT COMMENT "已收款合计：=projectPrice-projectCollectionValueRemain",
+    projectCollectionValueRemain FLOAT COMMENT "剩余款项：=projectPrice-collectionValue",
+    projectState TINYINT COMMENT "项目状态：完工或未完工",
+    projectCompleteDate DATE COMMENT "完工日期：施工完",
+    projectEndDate DATE COMMENT "竣工日期：验收完，款付完",
+    projectVocationSuggestion VARCHAR COMMENT "业务分配意见：语句",
+    projectCollectionSuggestion VARCHAR COMMENT "业务收款分配意见：语句",
+    projectCollectionTimes INT COMMENT "收款次数：每增加一次对应projectId的收款，收款次数+1",
+	PRIMARY KEY projectId
+);
+
+CREATE TABLE agreement(
+	agreementId INT(11) NOT NULL AUTO_INCREMENT,
+	agreementDate DATE NOT NULL,
+	agreementDiscount FLOAT NOT NULL COMMENT "优惠（注意与工程造价projectPrice运算）",
+	agreementRate FLOAT COMMENT "佣金提成比例：给工作人员、负责人等（同样是与工程造价projectPrice运算）",
+	PRIMARY KEY agreementId
+);
+
+CREATE TABLE measure(
+	measureId INT(11) NOT NULL AUTO_INCREMENT,
+	measurePrice FLOAT NOT NULL,
+	measureDate DATE NOT NULL COMMENT "登记日期",
+	measureCheckState TINYINT COMMENT "核销状态：0：	未核销,1：	已核销",
+	PRIMARY KEY measureId
+);
+
+CREATE TABLE collection(
+	collectionId INT(11) NOT NULL AUTO_INCREMENT,
+	collectionDate DATE NOT NULL,
+	collectionWay VARCHAR NOT NULL COMMENT "收款方式：varchar",
+	collectionItem TINYINT COMMENT "收款类别：若为量房订金则判断，对measurePrice操作而不对projectPrice操作",
+    collectionValue FLOAT,
+    collectionRate FLOAT COMMENT "收款占比：=collectionValue/projectPrice",
+    collectionCheckState TINYINT COMMENT "收款核对状态：	0：	未核对（默认）,1：	已核对（核对后变更）",
+	PRIMARY KEY collectionId
+);
+
+CREATE TABLE projectChange(
+	projectChangeId INT(11) NOT NULL AUTO_INCREMENT,
+	projectChangeDate DATE NOT NULL,
+    projectChangeValue FLOAT COMMENT "增加金额：将影响对应合同的projectPrice进而影响projectCollectionValueRemain",
+    projectChangeItem VARCHAR COMMENT "增减内容：语句即可",
+    projectChangeBelong VARCHAR COMMENT "属于门及门套内容：语句即可",
+	PRIMARY KEY projectChangeId
+);
+
+CREATE TABLE process(
+	processId INT(11) NOT NULL AUTO_INCREMENT,
+	processDate DATE NOT NULL,
+    processItem TINYINT COMMENT "施工类型：如为量房施工，则只需填入processMaterialValueTotal",
+    processNumber VARCHAR COMMENT "凭证号：只是一个号码，不用运算可用varchar",
+    processName VARCHAR COMMENT "项目实施名称：施工的标题",
+    processMaterialValue FLOAT COMMENT "材料代购金额：（材料单价+运输单价）*数量",
+    processMaterialValueTotal FLOAT COMMENT "材料代购总金额：包括多个process的",
+    processValueBuild FLOAT COMMENT "使用施工款：登记施工记录时自行填入",
+    processValueAllocate FLOAT COMMENT "使用调拨款：登记施工记录时自行填入",
+	PRIMARY KEY projectChangeId
+);
