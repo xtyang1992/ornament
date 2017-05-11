@@ -37,10 +37,13 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/user/login", method = GET)
     public Map<String, Object> login(HttpSession session, @RequestParam String userId, @RequestParam String password){
-        User user = userService.getUserById(userId);
         Map<String, Object> map = new HashMap<String, Object>();
+        if(userId == null || userId.equals("")) {
+            map.put("status", 3);
+        }
+        User user = userService.getUserById(userId);
         if(user == null) {
-            map.put("code", 1);
+            map.put("status", 1);
         } else if(user.getPassword().equals(password)) {
             //登录成功
             session.setAttribute("user", user);

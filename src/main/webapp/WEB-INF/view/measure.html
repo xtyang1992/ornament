@@ -27,11 +27,11 @@
 					<table class="site-table table-hover">
 						<thead>
 							<tr>
-								<th>编号</th>
-								<th>金额</th>
-								<th>日期</th>
-								<th>状态</th>
-								<th>操作</th>
+								<th id = "measureId">编号</th>
+								<th id = "measurePrice">金额</th>
+								<th id = "measereDate">日期</th>
+								<th id = "measereStatus">状态</th>
+								<th id = "op">操作</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -56,6 +56,52 @@
 		</div>
 		<script type="text/javascript" src="plugins/layui/layui.js"></script>
 		<script>
+            function init() {
+                var pageNum = getParam("pageNum");
+                if(pageNum == undefined) {
+                    pageNum = 0;
+				}
+				getMeasures(pageNum*15, null, null, null);
+			}
+
+			function getParam(param) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                var r = window.location.search.substr(1).match(reg); //匹配目标参数
+                if (r != null) return unescape(r[2]); return null; //返回参数值
+			}
+
+			function getMeasures(pageStart, startDate, endDate, status) {
+                $.ajax({
+                    type : "GET",
+                    contentType: "application/json",
+                    url:"/finance/measures" ,
+                    data:{
+                        pageStart : pageStart,
+                        startDate : startDate,
+                        endDate : endDate,
+                        status : status
+                    },
+                    success:function(result){
+                        if (result.status == 1) {
+                            $("#userId").val("");
+                            $("#password").val("");
+                            alert("密码错误，请重新登录");
+                        } else {
+                            $(result.data).each(function(i, measure) {
+                                $("#measureId").val(measure.measureId);
+                                $("#measurePrice").val(measure.measurePrice);
+                                $("#measureDate").val(measure.measureDate);
+                                $("#measureStatus").val(measure.measureStatus);
+                                if(measure.measureStatus == 1) {
+									$("#op").val("已核销");
+                                }
+                            });
+
+                        }
+                    }
+                });
+			}
+
 			layui.config({
 				base: 'plugins/layui/modules/'
 			});

@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 
 	<head>
@@ -21,13 +22,13 @@
 						<label class="beg-login-icon">
                         <i class="layui-icon">&#xe612;</i>
                     </label>
-						<input type="text" name="userId" lay-verify="userId" autocomplete="off" placeholder="这里输入工号" class="layui-input">
+						<input type="text" id="userId" lay-verify="userId" autocomplete="off" placeholder="这里输入工号" class="layui-input">
 					</div>
 					<div class="layui-form-item">
 						<label class="beg-login-icon">
                         <i class="layui-icon">&#xe642;</i>
                     </label>
-						<input type="password" name="password" lay-verify="password" autocomplete="off" placeholder="这里输入密码" class="layui-input">
+						<input type="password" id="password" lay-verify="password" autocomplete="off" placeholder="这里输入密码" class="layui-input">
 					</div>
 					<div class="layui-form-item">
 						<div class="beg-pull-left beg-login-remember">
@@ -70,9 +71,8 @@
 
                 //传递字符串格式json对象到后台（一个json对象）
                 $("#loginButton").click(function(){
-                    console.log("aaaaa");
-                    var userId =encodeURI($("#userId").attr("value"));
-                    var password = encodeURI($("#password").attr("value"));
+                    var userId =$("#userId").val();
+                    var password = $("#password").val();
 
                     $.ajax({
 						type : "GET",
@@ -92,7 +92,7 @@
                                 $("#password").val("");
                                 alert("用户不存在，请重新登录")
 							} else {
-                                SetCookie("username",result.data.userName,1);
+                                SetCookie("userName",result.data.userName,1);
                                 SetCookie("userId",result.data.userId,1);
                                 location.href='index.html';
                             }
