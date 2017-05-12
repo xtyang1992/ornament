@@ -7,9 +7,9 @@ import java.util.Date;
  */
 public class Measure {
     private int measureId;
-    private float measuerPrise;
-    private Date measureDate;
-    private int measereStatus;
+    private float measurePrice;
+    private String measureDate;
+    private int measureStatus;
 
     public int getMeasureId() {
         return measureId;
@@ -19,37 +19,37 @@ public class Measure {
         this.measureId = measureId;
     }
 
-    public float getMeasuerPrise() {
-        return measuerPrise;
+    public float getMeasurePrice() {
+        return measurePrice;
     }
 
-    public void setMeasuerPrise(float measuerPrise) {
-        this.measuerPrise = measuerPrise;
+    public void setMeasurePrice(float measurePrice) {
+        this.measurePrice = measurePrice;
     }
 
-    public Date getMeasureDate() {
+    public String getMeasureDate() {
         return measureDate;
     }
 
-    public void setMeasureDate(Date measureDate) {
+    public void setMeasureDate(String measureDate) {
         this.measureDate = measureDate;
     }
 
-    public int getMeasereStatus() {
-        return measereStatus;
+    public int getMeasureStatus() {
+        return measureStatus;
     }
 
-    public void setMeasereStatus(int measereStatus) {
-        this.measereStatus = measereStatus;
+    public void setMeasureStatus(int measureStatus) {
+        this.measureStatus = measureStatus;
     }
 
     @Override
     public String toString() {
         return "Measure{" +
                 "measureId=" + measureId +
-                ", measuerPrise=" + measuerPrise +
+                ", measurePrice=" + measurePrice +
                 ", measureDate=" + measureDate +
-                ", measereStatus=" + measereStatus +
+                ", measureStatus=" + measureStatus +
                 '}';
     }
 }

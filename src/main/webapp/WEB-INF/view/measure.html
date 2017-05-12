@@ -8,9 +8,10 @@
 		<link rel="stylesheet" href="css/global.css" media="all">
 		<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/table.css" />
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
 	</head>
 
-	<body>
+	<body onload = "init();">
 		<div class="admin-main">
 
 			<blockquote class="layui-elem-quote">
@@ -27,19 +28,19 @@
 					<table class="site-table table-hover">
 						<thead>
 							<tr>
-								<th id = "measureId">编号</th>
-								<th id = "measurePrice">金额</th>
-								<th id = "measereDate">日期</th>
-								<th id = "measereStatus">状态</th>
-								<th id = "op">操作</th>
+								<th >编号</th>
+								<th >金额</th>
+								<th >日期</th>
+								<th >状态</th>
+								<th>操作</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="measures">
 							<tr>
-								<td>1</td>
-								<td>11</td>
-								<td>2016-11-16 11:50</td>
-								<td>已核销</td>
+								<td id = "measureId">1</td>
+								<td id = "measurePrice">11</td>
+								<td id = "measereDate">2016-11-16 11:50</td>
+								<td id = "measereStatus">已核销</td>
 								<td>
 									<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">核销</a>
 								</td>
@@ -87,16 +88,19 @@
                             $("#password").val("");
                             alert("密码错误，请重新登录");
                         } else {
+                            var innerHTML = "";
                             $(result.data).each(function(i, measure) {
-                                $("#measureId").val(measure.measureId);
-                                $("#measurePrice").val(measure.measurePrice);
-                                $("#measureDate").val(measure.measureDate);
-                                $("#measureStatus").val(measure.measureStatus);
-                                if(measure.measureStatus == 1) {
-									$("#op").val("已核销");
-                                }
+                                innerHTML = innerHTML + "<tr><td id = 'measureId'>" + measure.measureId + "</td><td id = 'measurePrice'>" + measure.measureId
+									+ "</td><td id = 'measereDate'>" + measure.measureDate + "</td><td id = 'measereStatus'>" + (measure.measureStatus == 0 ? "未核销":"已核销")
+									+"</td>";
+                                if(measure.measureStatus == 0) {
+                                    innerHTML = innerHTML + "<td><a href='finance/measureStatus?measureId=" + measure.measureId + "'>核销</a></td>";
+                                } else {
+                                    innerHTML = innerHTML + "<td></td>";
+								}
+                                innerHTML = innerHTML + "</tr>";
                             });
-
+                            $("#measures").html(innerHTML);
                         }
                     }
                 });

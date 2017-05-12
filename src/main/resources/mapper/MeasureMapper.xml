@@ -7,10 +7,10 @@
 
     <select id="getMeasures" resultType="com.ornament.domain.Measure">
         SELECT * FROM measure WHERE 1=1
-        <if test="startDate != null">
+        <if test="startDate != null and startDate != ''">
             AND measureDate &gt;= #{startDate}
         </if>
-        <if test="startDate != null">
+        <if test="endDate != null and endDate != ''" >
             AND measureDate &lt;= #{endDate}
         </if>
         <if test="status != null">
