@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 /**
  * 功能概要：UserController
@@ -43,11 +44,11 @@ public class MeasureController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/finance/mesaureStatus", method = GET)
+    @RequestMapping(value = "/finance/measureStatus", method = PUT)
     public Map<String, Object> changeMeasureStatus(HttpSession session, @RequestParam Integer measureId){
         Integer result = measureService.changeMeasureStatus(measureId);
         Map<String, Object> map = new HashMap<String, Object>();
-        if(result == null) {
+        if(result == null || result == 0) {
             map.put("status", 1);
         } else {
             map.put("status", 0);

@@ -27,7 +27,7 @@
         );
     </insert>
 
-    <update id="changeMeasureId">
+    <update id="changeMeasureStatus">
         UPDATE measure SET measureStatus = 1 WHERE measureId = #{measureId};
     </update>
 </mapper>
