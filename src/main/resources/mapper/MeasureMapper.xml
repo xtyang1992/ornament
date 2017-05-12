@@ -18,4 +18,16 @@
         </if>
         LIMIT #{pageStart}, 3;
     </select>
+
+    <insert id="createMeasure">
+        INSERT INTO measure VALUES(
+            #{measure.measurePrice},
+            #{measure.measureDate},
+            0
+        );
+    </insert>
+
+    <update id="changeMeasureId">
+        UPDATE measure SET measureStatus = 1 WHERE measureId = #{measureId};
+    </update>
 </mapper>

@@ -19,4 +19,8 @@ public class MeasureServiceImpl implements MeasureService {
     public List<Measure> getMeasures(Integer pageStart, String startDate, String endDate, Integer status) {
         return measureDao.getMeasures(pageStart, startDate, endDate, status);
     }
+
+    public Integer changeMeasureStatus(Integer measureId) {
+        return measureDao.changeMeasureStatus(measureId);
+    }
 }

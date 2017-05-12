@@ -17,4 +17,18 @@ public interface MeasureDao {
      * @return
      */
     public List<Measure> getMeasures(@Param("pageStart")Integer pageStart, @Param("startDate")String startDate, @Param("endDate")String endDate, @Param("status")Integer status);
+
+    /**
+     *
+     * @param measure
+     * @return
+     */
+    public int createMeasure(@Param("measure")Measure measure);
+
+    /**
+     *
+     * @param measureId
+     * @return
+     */
+    public Integer changeMeasureStatus(@Param("measureId")Integer measureId);
 }
