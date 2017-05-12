@@ -28,7 +28,7 @@ public class MeasureController {
 
     @ResponseBody
     @RequestMapping(value = "/finance/measures", method = GET)
-    public Map<String, Object> login(HttpSession session, @RequestParam Integer pageStart,
+    public Map<String, Object> getMeasures(HttpSession session, @RequestParam Integer pageStart,
                                      @RequestParam String startDate, @RequestParam String endDate,
                                      @RequestParam Integer status){
         List<Measure> measures = measureService.getMeasures(pageStart, startDate, endDate, status);
@@ -38,6 +38,19 @@ public class MeasureController {
         } else {
             map.put("status", 0);
             map.put("data", measures);
+        }
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/finance/mesaureStatus", method = GET)
+    public Map<String, Object> changeMeasureStatus(HttpSession session, @RequestParam Integer measureId){
+        Integer result = measureService.changeMeasureStatus(measureId);
+        Map<String, Object> map = new HashMap<String, Object>();
+        if(result == null) {
+            map.put("status", 1);
+        } else {
+            map.put("status", 0);
         }
         return map;
     }
