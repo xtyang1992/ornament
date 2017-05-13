@@ -7,12 +7,13 @@ import java.util.Date;
  */
 public class Collection {
     private int collectionId;
+    private int projectId;
     private String collectionDate; //日期
     private String collectionWay;  //收款方式
     private int collectionItem; //收款类别
     private float collectionValue; //
     private float collectionRate; //
-    private int collectionCheckState; //收款核对状态
+    private int collectionStatus; //收款核对状态
 
     public int getCollectionId() {
         return collectionId;
@@ -20,6 +21,14 @@ public class Collection {
 
     public void setCollectionId(int collectionId) {
         this.collectionId = collectionId;
+    }
+
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 
     public String getCollectionDate() {
@@ -62,24 +71,25 @@ public class Collection {
         this.collectionRate = collectionRate;
     }
 
-    public int getCollectionCheckState() {
-        return collectionCheckState;
+    public int getCollectionStatus() {
+        return collectionStatus;
     }
 
-    public void setCollectionCheckState(int collectionCheckState) {
-        this.collectionCheckState = collectionCheckState;
+    public void setCollectionStatus(int collectionStatus) {
+        this.collectionStatus = collectionStatus;
     }
 
     @Override
     public String toString() {
         return "Collection{" +
                 "collectionId=" + collectionId +
-                ", collectionDate=" + collectionDate +
+                ", projectId=" + projectId +
+                ", collectionDate='" + collectionDate + '\'' +
                 ", collectionWay='" + collectionWay + '\'' +
                 ", collectionItem=" + collectionItem +
                 ", collectionValue=" + collectionValue +
                 ", collectionRate=" + collectionRate +
-                ", collectionCheckState=" + collectionCheckState +
+                ", collectionStatus=" + collectionStatus +
                 '}';
     }
 }

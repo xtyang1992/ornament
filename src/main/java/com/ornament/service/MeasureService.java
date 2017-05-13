@@ -11,4 +11,5 @@ import java.util.List;
 public interface MeasureService {
     public List<Measure> getMeasures(Integer pageStart, String startDate, String endDate, Integer status);
     public Integer changeMeasureStatus(Integer measureId);
+    public Integer createMeasure(Integer collectionId, float measurePrice, String measureDate);
 }

@@ -19,8 +19,9 @@
         LIMIT #{pageStart}, 3;
     </select>
 
-    <insert id="createMeasure">
-        INSERT INTO measure VALUES(
+    <insert id="createMeasure" useGeneratedKeys="true">
+        INSERT INTO measure (collectionId, measurePrice, measureDate) VALUES(
+            #{measure.collectionId},
             #{measure.measurePrice},
             #{measure.measureDate},
             0

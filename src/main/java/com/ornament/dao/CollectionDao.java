@@ -14,5 +14,5 @@ public interface CollectionDao {
      * @param collection
      * @return
      */
-    public int createCollection(@Param("collection")Collection collection);
+    public Integer createCollection(@Param("collection")Collection collection);
 }

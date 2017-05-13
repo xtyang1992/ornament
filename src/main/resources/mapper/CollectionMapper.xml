@@ -2,14 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ornament.dao.CollectionDao">
-    <insert id="createCollection">
-        INSERT INTO collection VALUES(
-            #{collection.collectionDate},
+    <insert id="createCollection" useGeneratedKeys="true" keyProperty="collectionId">
+        INSERT INTO collection (collectionWay, collectionItem, collectionValue, collectionDate, collectionRate, collectionStatus, projectId) VALUES(
             #{collection.collectionWay},
             #{collection.collectionItem},
             #{collection.collectionValue},
+            #{collection.collectionDate},
             #{collection.collectionRate},
-            0
+            0,
+            #{collection.projectId}
         );
     </insert>
 </mapper>

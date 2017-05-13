@@ -23,4 +23,12 @@ public class MeasureServiceImpl implements MeasureService {
     public Integer changeMeasureStatus(Integer measureId) {
         return measureDao.changeMeasureStatus(measureId);
     }
+
+    public Integer createMeasure(Integer collectionId, float measurePrice, String measureDate){
+        Measure measure = new Measure();
+        measure.setCollectionId(collectionId);
+        measure.setMeasureDate(measureDate);
+        measure.setMeasurePrice(measurePrice);
+        return measureDao.createMeasure(measure);
+    }
 }

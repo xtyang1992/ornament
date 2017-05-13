@@ -7,6 +7,7 @@ import java.util.Date;
  */
 public class Measure {
     private int measureId;
+    private int collectionId;
     private float measurePrice;
     private String measureDate;
     private int measureStatus;
@@ -17,6 +18,14 @@ public class Measure {
 
     public void setMeasureId(int measureId) {
         this.measureId = measureId;
+    }
+
+    public int getCollectionId() {
+        return collectionId;
+    }
+
+    public void setCollectionId(int collectionId) {
+        this.collectionId = collectionId;
     }
 
     public float getMeasurePrice() {
@@ -47,8 +56,9 @@ public class Measure {
     public String toString() {
         return "Measure{" +
                 "measureId=" + measureId +
+                ", collectionId=" + collectionId +
                 ", measurePrice=" + measurePrice +
-                ", measureDate=" + measureDate +
+                ", measureDate='" + measureDate + '\'' +
                 ", measureStatus=" + measureStatus +
                 '}';
     }
